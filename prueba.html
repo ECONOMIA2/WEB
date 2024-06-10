@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMPORTADORA JARMA - Tienda de Laptops</title>
+    <style>
+        /* Estilos existentes */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #040506;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #9B1313;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            max-width: 300px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 54px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .search-container button {
+            background-color: white;
+            color: #9B1313;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .search-container button:hover {
+            background-color: #f4f4f4;
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .cart-icon img {
+            width: 40px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #fff;
+            color: #9B1313;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .sidebar {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 140px;
+            left: 0;
+            width: 200px;
+            height: 100%;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li button {
+            background-color: #9B1313;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .sidebar ul li button:hover {
+            background-color: #800f0f;
+        }
+
+        .container {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .laptop-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+        }
+
+        .laptop-item {
+            background-color: white;
+            padding: 20px;
+            min-width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .laptop-item img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .laptop-item h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .laptop-item p {
+            margin: 5px 0;
+        }
+
+        .laptop-item .price {
+            color: #9B1313;
+            font-weight: bold;
+        }
+
+        .laptop-item button {
+            background-color: #9B1313;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .laptop-item button:hover {
+            background-color: #800f0f;
+        }
+
+        .cart-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            z-index: 1000;
+        }
+
+        .cart-container h2 {
+            margin-top: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-item img {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+
+        .cart-item h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+        }
+
+        .cart-item .price {
+            color: #9B1313;
+            font-weight: bold;
+        }
+
+        .cart-item .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .cart-item .quantity-control button {
+            background-color: #9B1313;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 0 5px;
+        }
+
+        .cart-item .quantity-control button:hover {
+            background-color: #800f0f;
+        }
+
+        .cart-item .quantity {
+            font-size: 18px;
+        }
+
+        .cart-item .remove-button {
+            background-color: #ff4c4c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: 20px;
+        }
+
+        .cart-item .remove-button:hover {
+            background-color: #e43e3e;
+        }
+
+        .cart-footer {
+            text-align: right;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .cart-footer .subtotal {
+            font-weight: bold;
+        }
+
+        .cart-footer button {
+            background-color: #9B1313;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .cart-footer button:hover {
+            background-color: #800f0f;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+    <img src="Logo.png" alt="Logo de IMPORTADORA JARMA">
+    <h1>IMPORTADORA JARMA</h1>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Buscar laptops...">
+        <button type="button" onclick="searchLaptops()">Buscar</button>
+        <div class="cart-icon" onclick="toggleCart()">
+            <img src="logocarrito.jpg" alt="Carrito">
+            <span class="cart-count" id="cart-count">0</span>
+        </div>
+        <div class="login-icon" onclick="window.location.href='login.html'">
+            <img src="usuario.png" alt="Iniciar Sesión" style="width: 30px; margin-left: 10px;">
+        </div>
+    </div>
+</header>
+
+   <div class="sidebar">
+        <h2>CATEGORIAS</h2>
+        <ul>
+            <li><button type="button"><a href="GAMING.html" style="color: white; text-decoration: none;">Gaming</a></button></li>
+			<li><button type="button"><a href="PROFESIONAL.html" style="color: white; text-decoration: none;">Profesional</a></button></li>
+			<li><button type="button"><a href="ESTUDIANTES.html" style="color: white; text-decoration: none;">Estudiantes</a></button></li>
+			<li><button type="button"><a href="ESCRITORES.html" style="color: white; text-decoration: none;">Escritores</a></button></li>
+           </ul>
+        <h2>MARCAS</h2>
+        <ul>
+            <li><button type="button"><a href="HP.html" style="color: white; text-decoration: none;">HP</a></button></li>
+            <li><button type="button"><a href="DELL.html" style="color: white; text-decoration: none;">DELL</a></button></li>
+            <li><button type="button"><a href="ACER.html" style="color: white; text-decoration: none;">ACER</a></button></li>
+            <li><button type="button"><a href="ASUS.html" style="color: white; text-decoration: none;">ASUS</a></button></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Laptops Destacadas</h2>
+        <div class="laptop-slider" id="laptop-slider">
+            <!-- Productos de laptop se agregarán aquí -->
+        </div>
+    </div>
+
+     <div class="cart-container" id="cart-container">
+        <h2>Carrito de Compras</h2>
+        <div id="cart-items"></div>
+        <div class="cart-footer">
+            <p class="subtotal">Subtotal: $<span id="cart-subtotal">0.00</span></p>
+            <button type="button" onclick="proceedToCheckout()">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <script>
+        const laptops = [
+            {
+                nombre: "Laptop HP Pavilion",
+                descripcion: "15.6 pulgadas, Intel Core i7, 16GB RAM, 512GB SSD",
+                precio: 750.00,
+                imagen: "pavilion.jpg"
+            },
+            {
+                nombre: "Laptop Dell XPS 13",
+                descripcion: "13.4 pulgadas, Intel Core i5, 8GB RAM, 256GB SSD",
+                precio: 950.00,
+                imagen: "dell.jpg"
+            },
+            // Más laptops aquí
+        ];
+
+        const cart = [];
+
+        function addToCart(index) {
+            const laptop = laptops[index];
+            const existingItem = cart.find(item => item.nombre === laptop.nombre);
+
+            if (existingItem) {
+                existingItem.cantidad += 1;
+            } else {
+                cart.push({ ...laptop, cantidad: 1 });
+            }
+
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = '';
+
+            let subtotal = 0;
+
+            cart.forEach((item, index) => {
+                subtotal += item.precio * item.cantidad;
+
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.imagen}" alt="${item.nombre}">
+                    <div>
+                        <h3>${item.nombre}</h3>
+                        <p>${item.descripcion}</p>
+                        <p class="price">$${item.precio.toFixed(2)}</p>
+                        <div class="quantity-control">
+                            <button onclick="changeQuantity(${index}, -1)">-</button>
+                            <span class="quantity">${item.cantidad}</span>
+                            <button onclick="changeQuantity(${index}, 1)">+</button>
+                        </div>
+                        <button class="remove-button" onclick="removeFromCart(${index})">Eliminar</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            document.getElementById('cart-subtotal').innerText = subtotal.toFixed(2);
+            document.getElementById('cart-count').innerText = cart.reduce((acc, item) => acc + item.cantidad, 0);
+        }
+
+        function changeQuantity(index, delta) {
+            cart[index].cantidad += delta;
+
+            if (cart[index].cantidad <= 0) {
+                cart.splice(index, 1);
+            }
+
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function toggleCart() {
+            const cartContainer = document.getElementById('cart-container');
+            cartContainer.style.display = cartContainer.style.display === 'none' || cartContainer.style.display === '' ? 'block' : 'none';
+        }
+
+        function checkout() {
+            alert('Compra finalizada!');
+            cart.length = 0;
+            updateCart();
+            toggleCart();
+        }
+
+        function loadLaptops() {
+            const laptopSlider = document.getElementById('laptop-slider');
+
+            laptops.forEach((laptop, index) => {
+                const laptopItem = document.createElement('div');
+                laptopItem.className = 'laptop-item';
+                laptopItem.innerHTML = `
+                    <img src="${laptop.imagen}" alt="${laptop.nombre}">
+                    <h2>${laptop.nombre}</h2>
+                    <p>${laptop.descripcion}</p>
+                    <p class="price">$${laptop.precio.toFixed(2)}</p>
+                    <button onclick="addToCart(${index})">Agregar al carrito</button>
+                `;
+                laptopSlider.appendChild(laptopItem);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadLaptops);
+    </script>
+</body>
+</html>
