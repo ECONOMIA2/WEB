@@ -7,7 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #12580E;
+             background: url('http://localhost/eco/fondo.jpg') no-repeat center center fixed; /* Ruta correcta a tu imagen de fondo */
+            background-size: cover;
             margin: 0;
             padding: 0;
             display: flex;
@@ -104,7 +105,10 @@
                     <td>${sale.receiptDate}</td>
                     <td>${sale.name}</td>
                     <td>${sale.address}, ${sale.mainStreet}, ${sale.province}</td>
-                    <td><button onclick="printReceipt(${index})">Imprimir</button></td>
+                    <td>
+                        <button onclick="printReceipt(${index})">Imprimir</button>
+                        <button onclick="deleteSale(${index})">Eliminar</button>
+                    </td>
                 `;
                 salesTableBody.appendChild(row);
             });
@@ -172,6 +176,13 @@
             `);
             receiptWindow.document.close();
             receiptWindow.print();
+        }
+
+        function deleteSale(index) {
+            const sales = JSON.parse(localStorage.getItem('sales')) || [];
+            sales.splice(index, 1);
+            localStorage.setItem('sales', JSON.stringify(sales));
+            loadSales();
         }
 
         window.onload = loadSales;
