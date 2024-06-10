@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAGO ECOMARKET</title>
+    <title>Pago - IMPORTADORA JARMA</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #37522A;
+            background-color: #75FF33;
             margin: 0;
             padding: 0;
             display: flex;
@@ -56,7 +56,7 @@
         }
 
         .form-group button:hover {
-            background-color: #800f0f;
+            background-color: #75FF33;
         }
 
         .receipt-container {
@@ -90,7 +90,7 @@
         }
 
         .back-button a:hover, .print-button button:hover {
-            background-color: #800f0f;
+            background-color: #75FF33;
         }
 
         .receipt-table {
@@ -105,7 +105,7 @@
         }
 
         .receipt-table th {
-            background-color: #f2f2f2;
+            background-color: #75FF33;
             text-align: left;
         }
 
@@ -118,7 +118,7 @@
 
 <body>
     <div class="checkout-container">
-        <h2>FACTURA DE COMPRA</h2>
+        <h2>COMPROBANTE DE COMPRA</h2>
         <div class="form-group">
             <label for="name">Nombre Completo</label>
             <input type="text" id="name" required>
@@ -151,13 +151,13 @@
             <button type="button" onclick="completePurchase()">Realizar Pago</button>
         </div>
         <div class="back-button">
-            <a href="index.html">Volver a la página principal</a>
+            <a href="pag1.html">Volver a la página principal</a>
         </div>
     </div>
 
     <div class="receipt-container" id="receipt-container">
-        <h2>DETALLE DE FACTURA</h2>
-        <p><strong>TIENDA ECOMARKET</strong></p>
+        <h2>Comprobante de Compra</h2>
+        <p><strong>IMPORTADORA JARMA</strong></p>
         <p><strong>Orden de Compra</strong></p>
         <div style="display: flex; justify-content: space-between;">
             <p><strong>Nombre:</strong> <span id="receipt-name"></span></p>
@@ -187,7 +187,7 @@
         </div>
         <p style="text-align: center; font-weight: bold;">¡Gracias por su compra!</p>
         <div class="back-button">
-            <a href="index.html">Volver a la página principal</a>
+            <a href="pag1.html">Volver a la página principal</a>
         </div>
         <div class="print-button">
             <button onclick="window.print()">Imprimir</button>
