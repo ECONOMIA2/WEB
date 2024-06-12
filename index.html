@@ -6,25 +6,15 @@
     <title>TIENDA ECOMARKET</title>
     <style>
         /* Estilos existentes */
-body {
-    font-family: Arial, sans-serif;
-    background-image: url('fondo2.jpg'); /* Ruta relativa a la ubicación del archivo HTML */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-}
-
-
         header {
             background-color: #9B1313;
             color: white;
             padding: 20px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
         }
+
 
         header img {
             max-width: 300px;
@@ -429,13 +419,41 @@ body {
         .back-button a:hover {
             background-color: #800f0f;
         }
+		
+        /* Estilos para el menú de variedades */
+        .variedades-menu {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .variedades-menu li {
+            margin-right: 20px;
+        }
+
+        .variedades-menu li:last-child {
+            margin-right: 0;
+        }
+
+        .variedades-menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
     </style>
 </head>
 
 <body>
     <header>
-    <img src="Logo.png" alt="Logo de ECO_MARKET">
-    <h1>ECO_MARKET</h1>
+        <img src="Logo.png" alt="Logo de ECO_MARKET">
+        <h1>ECO_MARKET</h1>
+        <ul class="variedades-menu">
+            <li><a href="LACTEOS.html">LÁCTEOS</a></li>
+            <li><a href="BEBIDAS.html">BEBIDAS</a></li>
+            <li><a href="ALIMENTOSDEPRIMERANECESIDAD.html">ALIMENTOS DE PRIMERA NECESIDAD</a></li>
+            <li><a href="ASEO.html">ASEO</a></li>
+        </ul>
     <div class="search-container">
         <input type="text" id="search-input" placeholder=" buscar viveres...">
         <button type="button" onclick="searchLaptops()">Buscar</button>
@@ -445,18 +463,6 @@ body {
         </div>
     </div>
 </header>
-
-
-   <div class="sidebar">
-        <h2>VARIEDADES</h2>
-        <ul>
-            <li><button type="button"><a href="LACTEOS.html" style="color: white; text-decoration: none;">LÁCTEOS</a></button></li>
-			<li><button type="button"><a href="BEBIDAS.html" style="color: white; text-decoration: none;">BEBIDAS</a></button></li>
-			<li><button type="button"><a href="ALIMENTOSDEPRIMERANECESIDAD.html" style="color: white; text-decoration: none;">ALIMENTOS DE PRIMERA NECESIDAD</a></button></li>
-			<li><button type="button"><a href="ASEO.html" style="color: white; text-decoration: none;">ASEO</a></button></li>
-           </ul>
-        </div>
-
     <div class="container">
         <div class="laptop-slider" id="laptop-slider">
             <div class="laptop-item">
